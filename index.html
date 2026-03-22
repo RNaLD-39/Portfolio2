@@ -142,15 +142,22 @@
             .custom-cursor, .custom-cursor-ring { display: none; }
         }
 
-        /* --- Fitur dari Repo Lama: Skill Progress Bar --- */
-        .skill-fill {
-            width: 0;
-            transition: width 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+        /* --- Fitur Skill Dashed Bar --- */
+        .skill-step {
+            background-color: #1f2937; /* gray-800 */
+            transition: background-color 0.4s ease;
         }
-        /* Memanfaatkan class is-visible dari Tailwind / Observer */
-        .is-visible .skill-fill { 
-            width: var(--skill-level); 
+        .fade-up.is-visible .active-step {
+            background-color: #0ea5e9; /* primary / cyan */
+            box-shadow: 0 0 8px rgba(14, 165, 233, 0.4); /* Efek glow neon tipis */
         }
+        
+        /* Staggering efek nyala berurutan */
+        .fade-up.is-visible .active-step.step-1 { transition-delay: 0.2s; }
+        .fade-up.is-visible .active-step.step-2 { transition-delay: 0.35s; }
+        .fade-up.is-visible .active-step.step-3 { transition-delay: 0.5s; }
+        .fade-up.is-visible .active-step.step-4 { transition-delay: 0.65s; }
+        .fade-up.is-visible .active-step.step-5 { transition-delay: 0.8s; }
     </style>
 </head>
 <body class="antialiased bg-grid">
@@ -338,7 +345,7 @@
         </div>
     </section>
 
-    <!-- Skills Section (Dengan Fitur Progress Bar) -->
+    <!-- Skills Section (Diperbarui dengan Level Tingkatan & Garis Putus-putus) -->
     <section id="skills" class="min-h-screen pt-32 md:pt-40 pb-20 flex flex-col justify-center relative border-t border-gray-800/50 snap-start snap-always">
         <div class="max-w-7xl mx-auto px-6 md:px-12 w-full">
             <div class="mb-16 fade-up">
@@ -348,7 +355,6 @@
                 </h2>
             </div>
 
-            <!-- Tata Letak Progress Bar -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-16 gap-y-12">
                 
                 <!-- Frontend -->
@@ -358,28 +364,40 @@
                         <div class="fade-up delay-100">
                             <div class="flex justify-between mb-2">
                                 <span class="text-gray-300 text-sm tracking-wide">HTML & CSS</span>
-                                <span class="text-gray-500 text-xs font-mono">90%</span>
+                                <span class="text-gray-500 text-xs font-mono uppercase">Advanced</span>
                             </div>
-                            <div class="h-[2px] w-full bg-gray-800 relative overflow-hidden">
-                                <div class="skill-fill absolute top-0 left-0 bottom-0 bg-primary" style="--skill-level: 90%;"></div>
+                            <div class="flex gap-1.5 h-[3px] w-full">
+                                <div class="flex-1 rounded-full skill-step active-step step-1"></div>
+                                <div class="flex-1 rounded-full skill-step active-step step-2"></div>
+                                <div class="flex-1 rounded-full skill-step active-step step-3"></div>
+                                <div class="flex-1 rounded-full skill-step active-step step-4"></div>
+                                <div class="flex-1 rounded-full skill-step active-step step-5"></div>
                             </div>
                         </div>
                         <div class="fade-up delay-200">
                             <div class="flex justify-between mb-2">
                                 <span class="text-gray-300 text-sm tracking-wide">Tailwind CSS</span>
-                                <span class="text-gray-500 text-xs font-mono">85%</span>
+                                <span class="text-gray-500 text-xs font-mono uppercase">Proficient</span>
                             </div>
-                            <div class="h-[2px] w-full bg-gray-800 relative overflow-hidden">
-                                <div class="skill-fill absolute top-0 left-0 bottom-0 bg-primary" style="--skill-level: 85%;"></div>
+                            <div class="flex gap-1.5 h-[3px] w-full">
+                                <div class="flex-1 rounded-full skill-step active-step step-1"></div>
+                                <div class="flex-1 rounded-full skill-step active-step step-2"></div>
+                                <div class="flex-1 rounded-full skill-step active-step step-3"></div>
+                                <div class="flex-1 rounded-full skill-step active-step step-4"></div>
+                                <div class="flex-1 rounded-full skill-step step-5"></div>
                             </div>
                         </div>
                         <div class="fade-up delay-300">
                             <div class="flex justify-between mb-2">
                                 <span class="text-gray-300 text-sm tracking-wide">JavaScript</span>
-                                <span class="text-gray-500 text-xs font-mono">75%</span>
+                                <span class="text-gray-500 text-xs font-mono uppercase">Intermediate</span>
                             </div>
-                            <div class="h-[2px] w-full bg-gray-800 relative overflow-hidden">
-                                <div class="skill-fill absolute top-0 left-0 bottom-0 bg-primary" style="--skill-level: 75%;"></div>
+                            <div class="flex gap-1.5 h-[3px] w-full">
+                                <div class="flex-1 rounded-full skill-step active-step step-1"></div>
+                                <div class="flex-1 rounded-full skill-step active-step step-2"></div>
+                                <div class="flex-1 rounded-full skill-step active-step step-3"></div>
+                                <div class="flex-1 rounded-full skill-step step-4"></div>
+                                <div class="flex-1 rounded-full skill-step step-5"></div>
                             </div>
                         </div>
                     </div>
@@ -392,28 +410,40 @@
                         <div class="fade-up delay-200">
                             <div class="flex justify-between mb-2">
                                 <span class="text-gray-300 text-sm tracking-wide">PHP 8.x</span>
-                                <span class="text-gray-500 text-xs font-mono">80%</span>
+                                <span class="text-gray-500 text-xs font-mono uppercase">Proficient</span>
                             </div>
-                            <div class="h-[2px] w-full bg-gray-800 relative overflow-hidden">
-                                <div class="skill-fill absolute top-0 left-0 bottom-0 bg-primary" style="--skill-level: 80%;"></div>
+                            <div class="flex gap-1.5 h-[3px] w-full">
+                                <div class="flex-1 rounded-full skill-step active-step step-1"></div>
+                                <div class="flex-1 rounded-full skill-step active-step step-2"></div>
+                                <div class="flex-1 rounded-full skill-step active-step step-3"></div>
+                                <div class="flex-1 rounded-full skill-step active-step step-4"></div>
+                                <div class="flex-1 rounded-full skill-step step-5"></div>
                             </div>
                         </div>
                         <div class="fade-up delay-300">
                             <div class="flex justify-between mb-2">
                                 <span class="text-white font-medium text-sm tracking-wide">Laravel Framework</span>
-                                <span class="text-primary text-xs font-mono">95%</span>
+                                <span class="text-primary text-xs font-mono uppercase">Advanced</span>
                             </div>
-                            <div class="h-[2px] w-full bg-gray-800 relative overflow-hidden">
-                                <div class="skill-fill absolute top-0 left-0 bottom-0 bg-primary" style="--skill-level: 95%;"></div>
+                            <div class="flex gap-1.5 h-[3px] w-full">
+                                <div class="flex-1 rounded-full skill-step active-step step-1"></div>
+                                <div class="flex-1 rounded-full skill-step active-step step-2"></div>
+                                <div class="flex-1 rounded-full skill-step active-step step-3"></div>
+                                <div class="flex-1 rounded-full skill-step active-step step-4"></div>
+                                <div class="flex-1 rounded-full skill-step active-step step-5"></div>
                             </div>
                         </div>
                         <div class="fade-up delay-400">
                             <div class="flex justify-between mb-2">
                                 <span class="text-gray-300 text-sm tracking-wide">MySQL</span>
-                                <span class="text-gray-500 text-xs font-mono">75%</span>
+                                <span class="text-gray-500 text-xs font-mono uppercase">Intermediate</span>
                             </div>
-                            <div class="h-[2px] w-full bg-gray-800 relative overflow-hidden">
-                                <div class="skill-fill absolute top-0 left-0 bottom-0 bg-primary" style="--skill-level: 75%;"></div>
+                            <div class="flex gap-1.5 h-[3px] w-full">
+                                <div class="flex-1 rounded-full skill-step active-step step-1"></div>
+                                <div class="flex-1 rounded-full skill-step active-step step-2"></div>
+                                <div class="flex-1 rounded-full skill-step active-step step-3"></div>
+                                <div class="flex-1 rounded-full skill-step step-4"></div>
+                                <div class="flex-1 rounded-full skill-step step-5"></div>
                             </div>
                         </div>
                     </div>
@@ -426,28 +456,40 @@
                         <div class="fade-up delay-300">
                             <div class="flex justify-between mb-2">
                                 <span class="text-gray-300 text-sm tracking-wide">Git & GitHub</span>
-                                <span class="text-gray-500 text-xs font-mono">85%</span>
+                                <span class="text-gray-500 text-xs font-mono uppercase">Proficient</span>
                             </div>
-                            <div class="h-[2px] w-full bg-gray-800 relative overflow-hidden">
-                                <div class="skill-fill absolute top-0 left-0 bottom-0 bg-primary" style="--skill-level: 85%;"></div>
+                            <div class="flex gap-1.5 h-[3px] w-full">
+                                <div class="flex-1 rounded-full skill-step active-step step-1"></div>
+                                <div class="flex-1 rounded-full skill-step active-step step-2"></div>
+                                <div class="flex-1 rounded-full skill-step active-step step-3"></div>
+                                <div class="flex-1 rounded-full skill-step active-step step-4"></div>
+                                <div class="flex-1 rounded-full skill-step step-5"></div>
                             </div>
                         </div>
                         <div class="fade-up delay-400">
                             <div class="flex justify-between mb-2">
                                 <span class="text-gray-300 text-sm tracking-wide">UI/UX Figma</span>
-                                <span class="text-gray-500 text-xs font-mono">80%</span>
+                                <span class="text-gray-500 text-xs font-mono uppercase">Proficient</span>
                             </div>
-                            <div class="h-[2px] w-full bg-gray-800 relative overflow-hidden">
-                                <div class="skill-fill absolute top-0 left-0 bottom-0 bg-primary" style="--skill-level: 80%;"></div>
+                            <div class="flex gap-1.5 h-[3px] w-full">
+                                <div class="flex-1 rounded-full skill-step active-step step-1"></div>
+                                <div class="flex-1 rounded-full skill-step active-step step-2"></div>
+                                <div class="flex-1 rounded-full skill-step active-step step-3"></div>
+                                <div class="flex-1 rounded-full skill-step active-step step-4"></div>
+                                <div class="flex-1 rounded-full skill-step step-5"></div>
                             </div>
                         </div>
                         <div class="fade-up delay-500">
                             <div class="flex justify-between mb-2">
                                 <span class="text-gray-300 text-sm tracking-wide">Game Dev</span>
-                                <span class="text-gray-500 text-xs font-mono">60%</span>
+                                <span class="text-gray-500 text-xs font-mono uppercase">Familiar</span>
                             </div>
-                            <div class="h-[2px] w-full bg-gray-800 relative overflow-hidden">
-                                <div class="skill-fill absolute top-0 left-0 bottom-0 bg-primary" style="--skill-level: 60%;"></div>
+                            <div class="flex gap-1.5 h-[3px] w-full">
+                                <div class="flex-1 rounded-full skill-step active-step step-1"></div>
+                                <div class="flex-1 rounded-full skill-step active-step step-2"></div>
+                                <div class="flex-1 rounded-full skill-step step-3"></div>
+                                <div class="flex-1 rounded-full skill-step step-4"></div>
+                                <div class="flex-1 rounded-full skill-step step-5"></div>
                             </div>
                         </div>
                     </div>
